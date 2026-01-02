@@ -20,9 +20,9 @@ pipeline {
 
             
         }  
-        stage('Unit Testing') {
+        stage('Docker build') {
             steps {
-                sh 'npm run coverage'
+                sh 'docker build -t bhanu0710/project:$GIT_COMMIT .'
                    
                 
             }
