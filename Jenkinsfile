@@ -29,6 +29,20 @@ pipeline {
             
             
         } 
+        stage('Trivy Vulnerability Scanner') {
+            steps {
+                sh '''
+                   trivy image bhanu0710/project:$GIT_COMMIT \
+                     --severity HIGH,CRITICAL \
+                     --exit-code 1 \
+                     --quiet \
+                     --format json -o trivy-image-critical-results.json
+                '''
+                
+            }
+
+            
+        }
         
     }
 }
