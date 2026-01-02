@@ -7,6 +7,13 @@ pipeline {
                 echo 'Hello World'
             }
         }
+        stage('new'){
+           steps { 
+               script {
+                  sh 'node -v'
+                   }
+                }
+            }
     }
 }
 
