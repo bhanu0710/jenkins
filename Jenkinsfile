@@ -33,7 +33,7 @@ pipeline {
             steps {
                 sh '''
                    trivy image bhanu0710/project:$GIT_COMMIT \
-                     --severity CRITICAL \
+                     --severity HIGH,CRITICAL \
                      --exit-code 1 \
                      --quiet \
                      --format json -o trivy-image-critical-results.json
@@ -43,6 +43,17 @@ pipeline {
 
             
         }
+        stage('Docker push') {
+            steps {
+                withDockerRegistry(credentialsId: 'docker-cred', url: "") {
+                  sh 'docker push  bhanu0710/project:$GIT_COMMIT'
+                 }
+               
+                
+            }
+            
+            
+        } 
         
     }
 }
