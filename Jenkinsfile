@@ -4,18 +4,11 @@ pipeline {
         nodejs 'node'
      }
     stages {
-        stage('Hello') {
+        stage('Installing Dependencies') {
             steps {
-                echo 'Hello World'
+                sh 'npm install --no-audit'
             }
         }
-        stage('new'){
-           steps { 
-               script {
-                  sh 'node -v'
-                   }
-                }
-            }
+        
     }
 }
-
